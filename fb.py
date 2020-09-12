@@ -15,7 +15,7 @@ while True:
         print_dict(tb_dict)
 
     if(cmd=="create"):
-        tb_dict[input("name")] = input("phone number? ")
+        tb_dict[input("person's name? ")] = input("phone number? ")
         print_dict(tb_dict)
 
     if(cmd=="update"):
