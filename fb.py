@@ -15,13 +15,13 @@ while True:
         print_dict(tb_dict)
 
     if(cmd=="create"):
-        tb_dict[input("name")] = input("phone number?")
+        tb_dict[input("name")] = input("phone number? ")
         print_dict(tb_dict)
 
     if(cmd=="update"):
-        tb_dict[input("porson's name?")] = input("phone number?")
+        tb_dict[input("person's name? ")] = input("phone number? ")
         print_dict(tb_dict)
 
     if(cmd=="delete"):
-        tb_dict.pop(input("name?"))
+        tb_dict.pop(input("name? "))
         print_dict(tb_dict)
