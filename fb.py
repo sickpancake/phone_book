@@ -25,3 +25,6 @@ while True:
     if(cmd=="delete"):
         tb_dict.pop(input("name? "))
         print_dict(tb_dict)
+
+    if(cmd=="quit" or cmd=="exit"):
+        break
