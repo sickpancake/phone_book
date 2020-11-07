@@ -14,8 +14,9 @@ while True:
         print_dict(tb_dict)
 
     if(cmd=="create"):
-
-        tb_dict[ input("person's name? ")] = pn = input("phone number? ")
+        p = input("person's name? ")
+        pn = input("phone number? ")
+        tb_dict[(pn)] = p
         try:
             int(pn)
         except ValueError:
@@ -24,8 +25,12 @@ while True:
 
         print_dict(tb_dict)
 
+    
+
     if(cmd=="update"):
-        tb_dict[input("person's name? ")] = npn = input("phone number? ")
+        pn2 = input("person's name? ")
+        phn2 = input("phone number? ")
+        tb_dict[pn2] = npn = phn2
         try:
             int(npn)
         except ValueError:
