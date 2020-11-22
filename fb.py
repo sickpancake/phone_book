@@ -1,5 +1,3 @@
-
-
 def print_dict(d):
     print(d)
     print(len(d))
