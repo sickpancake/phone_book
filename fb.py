@@ -14,11 +14,19 @@ while True:
     if(cmd=="create"):
         p = input("person's name? ")
         pn = input("phone number? ")
-        tb_dict[(pn)] = p
+        
+        sipid = p in tb_dict
+        if sipid==True:
+            print("this name is unavailable")
+            break
+
+        tb_dict[(p)] = pn
         l = len(pn)
 
         if(l == 10):
             print("first check done")
+
+       
 
         elif(l > 10):
             print("has to be 10 numbers")
@@ -28,6 +36,7 @@ while True:
             print("10 numbers")
             break
             
+        
 
         try:
             int(pn)
