@@ -47,9 +47,14 @@ class PhoneBook:
             exit()
 
         if name in self.dict:
-            print("name is taken. look yourself!")
-            print_dict(self.dict)
-            exit()
+            wantToDouble = input("do you want to double this name cause this name is taken?")
+            print(self.dict)
+            if wantToDouble == "yes":
+                print("second check done!")
+
+            else:
+                print("not doubling")
+                exit()
 
         else:
             print("second check done!")
