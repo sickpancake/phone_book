@@ -23,3 +23,14 @@ class PhoneBookModuleTest(unittest.TestCase):
 
         self.assertEqual(expectedContact.name, actualContact.name)
         self.assertEqual(expectedContact.phoneNumber, actualContact.phoneNumber)
+
+    def test_allow_duplicate(self):
+        phoneBook = PhoneBookModule.PhoneBook()
+
+        contact1 = ContactModule.Contact("A", "1234567890")
+        contact2 = ContactModule.Contact("A", "0987654321")
+
+        phoneBook.saveContact(contact1)
+        phoneBook.saveContact(contact2)
+
+        self.assertEqual(2, len(phoneBook.getContacts()))
