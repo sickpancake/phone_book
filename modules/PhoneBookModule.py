@@ -1,22 +1,22 @@
 #create the phonebook class
+
+import modules.ContactModule as ContactModule
 class PhoneBook:
     def __init__(self):
-        self.dict = {
-
-        }
+        self.list = list()
 
     def getContacts(self):
-        return self.dict
+        return self.list
 
     def getContact(self, name):
-        pn = self.dict.get(name, None)
+        pn = self.list.get(name, None)
 
         if (pn == None):
             return None
 
-        contact = Contact(name, pn)
+        contact = ContactModule.Contact(name, pn)
         return contact
-
+ 
     def saveContact(self, contact):
         name = contact.getName()
         phoneNumber = contact.getPhoneNumber()
@@ -27,7 +27,7 @@ class PhoneBook:
             print("has to be 10 digits")
             exit()
 
-        if name in self.dict:
+        if name in self.list:
             wantToDouble = input("do you want to double this name cause this name is taken?")
             print(self.dict)
             if wantToDouble == "yes":
@@ -48,7 +48,7 @@ class PhoneBook:
 
         print("last check done!")
         print("adding...")
-        self.dict[name] = phoneNumber
+        self.list.append(name + ": " + phoneNumber)
         print("added")
 
     def updateConact(self, contact):
@@ -68,7 +68,7 @@ class PhoneBook:
         
         print("last check done!")
         print("changing...")
-        self.dict[name] = phoneNumber
+        self.list[name] = name + ": " + phoneNumber
         print("changed")
 
     def deleteContact(self, contact):
@@ -77,7 +77,7 @@ class PhoneBook:
             deleteOrNot = input("Are you sure you want to delete " + name + " from contacts?")
             if deleteOrNot == "yes":
                 print("deleting...")
-                self.dict.pop(name) 
+                self.list.remove(name) 
             else:
                 print("ok, not deleting")
         else:
