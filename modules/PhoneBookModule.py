@@ -9,13 +9,10 @@ class PhoneBook:
         return self.list
 
     def getContact(self, name):
-        pn = self.list.get(name, None)
-
-        if (pn == None):
+        if (name == None):
             return None
-
-        contact = ContactModule.Contact(name, pn)
-        return contact
+    
+        return [contact for contact in self.list if contact.name == name]
  
     def saveContact(self, contact):
         name = contact.getName()
@@ -48,11 +45,10 @@ class PhoneBook:
 
         print("last check done!")
         print("adding...")
-        self.list.append(name + ": " + phoneNumber)
+        self.list.append(contact)
         print("added")
 
     def updateConact(self, contact):
-        name = contact.getName()
         phoneNumber = contact.getPhoneNumber()
         if(len(phoneNumber) == 10):
             print("first check done!")
@@ -68,19 +64,17 @@ class PhoneBook:
         
         print("last check done!")
         print("changing...")
-        self.list[name] = name + ": " + phoneNumber
+        contact.setPhoneNumber(phoneNumber)
         print("changed")
 
     def deleteContact(self, contact):
-        name = contact.getName()
-        if name in self.dict:
-            deleteOrNot = input("Are you sure you want to delete " + name + " from contacts?")
+        if contact in self.list:
+            deleteOrNot = input("Are you sure you want to delete " + contact.name + " from contacts?")
             if deleteOrNot == "yes":
                 print("deleting...")
-                self.list.remove(name) 
+                self.list.pop(contact) 
             else:
                 print("ok, not deleting")
         else:
             print("this contact is not in contacts")
             print("look!")
-            print(self.dict )

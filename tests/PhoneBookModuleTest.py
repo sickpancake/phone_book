@@ -34,3 +34,14 @@ class PhoneBookModuleTest(unittest.TestCase):
         phoneBook.saveContact(contact2)
 
         self.assertEqual(2, len(phoneBook.getContacts()))
+
+    def test_delete_contact(self):
+        phoneBook = PhoneBookModule.PhoneBook()
+
+        contact1 = ContactModule.Contact("A", "1234567890")
+
+        phoneBook.saveContact(contact1)
+
+        self.assertEqual(1, len(phoneBook.getContacts()))
+
+        # to be completed...

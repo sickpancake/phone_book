@@ -2,10 +2,6 @@
 from modules.ContactModule import Contact 
 from modules.PhoneBookModule import PhoneBook
 
-#print dict func
-def print_dict(dict):
-        print(dict)
-
 if __name__ == "__main__":
 
     phoneBook = PhoneBook()
@@ -14,7 +10,8 @@ if __name__ == "__main__":
 while True:
     cmd = input("You can read, create, update and delete. If you don't want to use the code anymore, you can type 'quit' or 'exit'. What do you want to do? ")
     if(cmd=="read"):
-        print_dict(phoneBook.getContacts())
+         for conact in phoneBook.list:
+            print(conact.name + ': ' + conact.phoneNumber)
 
     if(cmd=="create"):
         p = input("person's name? ")
@@ -23,7 +20,8 @@ while True:
         contact = Contact(p, pn)
         phoneBook.saveContact(contact)
 
-        print_dict(phoneBook.getContacts())
+        for conact in phoneBook.list:
+            print(conact.name + ': ' + conact.phoneNumber)
 
 
     if(cmd=="update"):
@@ -37,18 +35,21 @@ while True:
         
         phoneBook.updateConact(contact)
 
-        print_dict(phoneBook.getContacts())
+        for conact in phoneBook.list:
+            print(conact.name + ': ' + conact.phoneNumber)
 
     if(cmd=="delete"):
         pn = input("name? ")
         contact = phoneBook.getContact(pn)
+        
         if (contact == None):
             print("contact does not exist")
             continue
-
+        
         phoneBook.deleteContact(contact)
 
-        print_dict(phoneBook.getContacts())
+        for conact in phoneBook.list:
+            print(conact.name + ': ' + conact.phoneNumber)
 
     if(cmd=="quit" or cmd=="exit"):
         break
