@@ -35,13 +35,44 @@ class PhoneBookModuleTest(unittest.TestCase):
 
         self.assertEqual(2, len(phoneBook.getContacts()))
 
-    def test_delete_contact(self):
+    def test_delete_all_contacts_named_A(self):
         phoneBook = PhoneBookModule.PhoneBook()
 
-        contact1 = ContactModule.Contact("A", "1234567890")
+        phoneBook.saveContact(ContactModule.Contact("A", "1234567890"))
+        phoneBook.saveContact(ContactModule.Contact("A", "0987654321"))
 
-        phoneBook.saveContact(contact1)
+        self.assertEqual(2, len(phoneBook.getContacts()))
+        
+        # TBC
+        self.fail()
+
+    def test_delete_second_contact_named_A(self):
+        phoneBook = PhoneBookModule.PhoneBook()
+
+        phoneBook.saveContact(ContactModule.Contact("A", "1234567890"))
+        phoneBook.saveContact(ContactModule.Contact("A", "0987654321"))
+
+        self.assertEqual(2, len(phoneBook.getContacts()))
+        
+        # TBC
+        self.fail() # replace this with real tests
+
+    def test_delete_first_contact_named_A(self):
+        phoneBook = PhoneBookModule.PhoneBook()
+
+        phoneBook.saveContact(ContactModule.Contact("A", "1234567890"))
+        phoneBook.saveContact(ContactModule.Contact("A", "0987654321"))
+
+        self.assertEqual(2, len(phoneBook.getContacts()))
+        
+        # TBC
+        self.fail() # replace this with real tests
+
+
+    def test_no_duplicate_contact(self):
+        phoneBook = PhoneBookModule.PhoneBook()
+
+        phoneBook.saveContact(ContactModule.Contact("A", "1234567890"))
+        phoneBook.saveContact(ContactModule.Contact("A", "1234567890"))
 
         self.assertEqual(1, len(phoneBook.getContacts()))
-
-        # to be completed...
