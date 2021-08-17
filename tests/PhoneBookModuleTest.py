@@ -19,7 +19,7 @@ class PhoneBookModuleTest(unittest.TestCase):
         expectedContact = ContactModule.Contact("A", "0123456789")
         phoneBook.saveContact(expectedContact)
 
-        actualContact = phoneBook.getContact("A")
+        actualContact = phoneBook.getFirstContact("A")
 
         self.assertEqual(expectedContact.name, actualContact.name)
         self.assertEqual(expectedContact.phoneNumber, actualContact.phoneNumber)
@@ -76,3 +76,19 @@ class PhoneBookModuleTest(unittest.TestCase):
         phoneBook.saveContact(ContactModule.Contact("A", "1234567890"))
 
         self.assertEqual(1, len(phoneBook.getContacts()))
+
+    def test_update_contact(self):
+        phoneBook = PhoneBookModule.PhoneBook()
+
+        phoneBook.saveContact(ContactModule.Contact("A", "1234567890"))
+        contactA = phoneBook.getContactsByNameAndOrder("A", 1)
+        self.assertIsNotNone(contactA, "contact a should not be none")
+        self.assertEqual(contactA.getName(), "A")
+        self.assertEqual(contactA.getPhoneNumber(), "1234567890")
+        
+        phoneBook.updateConact(contactA, "1234567899")
+        contactA = phoneBook.getContactsByNameAndOrder("A", 1)
+        self.assertIsNotNone(contactA, "contact a should not be none")
+        self.assertEqual(contactA.getName(), "A")
+        self.assertEqual(contactA.getPhoneNumber(), "1234567899")
+        

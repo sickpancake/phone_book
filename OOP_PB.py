@@ -26,27 +26,29 @@ while True:
 
     if(cmd=="update"):
         pn2 = input("person's name? ")
-        contact = phoneBook.getContact(pn2)
+        order = input("order?")
+        contact = phoneBook.getContactsByNameAndOrder(pn2, order)
         if (contact == None):
             print("contact does not exist")
             continue
 
         phn2 = input("phone number? ")
         
-        phoneBook.updateConact(contact)
+        phoneBook.updateConact(contact, phn2)
 
         for conact in phoneBook.list:
             print(conact.name + ': ' + conact.phoneNumber)
 
     if(cmd=="delete"):
         pn = input("name? ")
-        contact = phoneBook.getContact(pn)
+        order = input("order?")
+        contact = phoneBook.getContactsByNameAndOrder(pn, order)
         
         if (contact == None):
             print("contact does not exist")
             continue
         
-        phoneBook.deleteContact(contact)
+        phoneBook.deleteContact(contact, order)
 
         for conact in phoneBook.list:
             print(conact.name + ': ' + conact.phoneNumber)

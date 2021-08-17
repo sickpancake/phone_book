@@ -8,12 +8,23 @@ class PhoneBook:
     def getContacts(self):
         return self.list
 
-    def getContact(self, name):
+    def getContactsByName(self, name):
         if (name == None):
             return None
     
         return [contact for contact in self.list if contact.name == name]
  
+    def getFirstContact(self, name):
+        if (name == None):
+            return None
+    
+        contact = [contact for contact in self.list if contact.name == name]
+
+        return contact[0]
+
+    def getContactsByNameAndOrder(self, name, order):
+        return self.getContactsByName(name)[int(order) - 1]
+
     def saveContact(self, contact):
         name = contact.getName()
         phoneNumber = contact.getPhoneNumber()
@@ -48,8 +59,7 @@ class PhoneBook:
         self.list.append(contact)
         print("added")
 
-    def updateConact(self, contact):
-        phoneNumber = contact.getPhoneNumber()
+    def updateConact(self, contact, phoneNumber):
         if(len(phoneNumber) == 10):
             print("first check done!")
         else:
@@ -67,12 +77,12 @@ class PhoneBook:
         contact.setPhoneNumber(phoneNumber)
         print("changed")
 
-    def deleteContact(self, contact):
+    def deleteContact(self, contact, order):
         if contact in self.list:
             deleteOrNot = input("Are you sure you want to delete " + contact.name + " from contacts?")
             if deleteOrNot == "yes":
                 print("deleting...")
-                self.list.pop(contact) 
+                self.list.pop(int(order) - 1) 
             else:
                 print("ok, not deleting")
         else:
