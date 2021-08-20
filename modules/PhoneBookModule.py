@@ -79,12 +79,7 @@ class PhoneBook:
 
     def deleteContact(self, contact, order):
         if contact in self.list:
-            deleteOrNot = input("Are you sure you want to delete " + contact.name + " from contacts?")
-            if deleteOrNot == "yes":
-                print("deleting...")
                 self.list.pop(int(order) - 1) 
-            else:
-                print("ok, not deleting")
         else:
             print("this contact is not in contacts")
             print("look!")
