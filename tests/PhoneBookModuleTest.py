@@ -35,6 +35,18 @@ class PhoneBookModuleTest(unittest.TestCase):
 
         self.assertEqual(2, len(phoneBook.getContacts()))
 
+    def test_order_should_be_numbers(self):
+        phoneBook = PhoneBookModule.PhoneBook()
+
+        contact = ContactModule.Contact("A", "1234567890")
+        self.assertEqual(contact.name, "A", "contact name is not A")
+        self.assertEqual(contact.phoneNumber, "1234567890", "contact phone number is not 1234567890")
+        phoneBook.saveContact(contact)
+        self.assertEqual(len(phoneBook), 1, "there is no contact in phone book")
+
+        #tbc
+        self.fail()
+    
     def test_delete_all_contacts_named_A(self):
         phoneBook = PhoneBookModule.PhoneBook()
 
@@ -42,10 +54,9 @@ class PhoneBookModuleTest(unittest.TestCase):
         phoneBook.saveContact(ContactModule.Contact("A", "0987654321"))
 
         self.assertEqual(2, len(phoneBook.getContacts()))
-        
-        # TBC
-        self.fail()
 
+        
+        
     def test_delete_second_contact_named_A(self):
         phoneBook = PhoneBookModule.PhoneBook()
 
@@ -54,8 +65,11 @@ class PhoneBookModuleTest(unittest.TestCase):
 
         self.assertEqual(2, len(phoneBook.getContacts()))
         
-        # TBC
-        self.fail() # replace this with real tests
+        contact = phoneBook.getContactsByNameAndOrder("A", 2)
+        
+        phoneBook.deleteContact(contact, 2)
+        self.assertEqual(len(phoneBook.list), 1)
+        self.assertEqual(contact.phoneNumber, "0987654321")
 
     def test_delete_first_contact_named_A(self):
         phoneBook = PhoneBookModule.PhoneBook()
@@ -65,8 +79,11 @@ class PhoneBookModuleTest(unittest.TestCase):
 
         self.assertEqual(2, len(phoneBook.getContacts()))
         
-        # TBC
-        self.fail() # replace this with real tests
+        contact = phoneBook.getContactsByNameAndOrder("A", 1)
+        
+        phoneBook.deleteContact(contact, 1)
+        self.assertEqual(len(phoneBook.list), 1)
+        self.assertEqual(contact.phoneNumber, "1234567890")
 
 
     def test_no_duplicate_contact(self):
