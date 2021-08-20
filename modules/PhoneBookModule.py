@@ -54,10 +54,15 @@ class PhoneBook:
             print("number only")
             exit()
 
-        print("last check done!")
-        print("adding...")
-        self.list.append(contact)
-        print("added")
+        for x in self.list:
+            if x.phoneNumber == phoneNumber:
+                print("this phone number is taken")
+
+            else:
+                print("last check done!")
+                print("adding...")
+                self.list.append(contact)
+                print("added")
 
     def updateConact(self, contact, phoneNumber):
         if(len(phoneNumber) == 10):

@@ -90,6 +90,9 @@ class PhoneBookModuleTest(unittest.TestCase):
         phoneBook = PhoneBookModule.PhoneBook()
 
         phoneBook.saveContact(ContactModule.Contact("A", "1234567890"))
+
+        self.assertEqual(1, len(phoneBook.getContacts()))
+
         phoneBook.saveContact(ContactModule.Contact("A", "1234567890"))
 
         self.assertEqual(1, len(phoneBook.getContacts()))
