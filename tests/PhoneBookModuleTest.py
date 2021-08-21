@@ -123,3 +123,15 @@ class PhoneBookModuleTest(unittest.TestCase):
         contact = ContactModule.Contact("B", "0987654321")
 
         self.assertEqual(phoneBook.matchingExisting(contact), True)
+
+    def test_matchingExisting_negative(self):
+        phoneBook = PhoneBookModule.PhoneBook()
+
+        phoneBook.saveContact(ContactModule.Contact("A", "1234567890"))
+        self.assertEqual(len(phoneBook.getContacts()), 1)
+        phoneBook.saveContact(ContactModule.Contact("B", "0987654321"))
+        self.assertEqual(len(phoneBook.getContacts()), 2)
+
+        contact = ContactModule.Contact("c", "0987654321")
+
+        self.assertEqual(phoneBook.matchingExisting(contact), False)

@@ -35,7 +35,17 @@ class PhoneBook:
 
     def validatePhoneNumber(self, phoneNumber):
         # todo - code here
-        return False # return properly later
+        if(len(phoneNumber) != 10):
+            print("has to be 10 digits")
+            return False
+
+        try:
+            int(phoneNumber)
+        except ValueError:
+            print("number only")
+            return False
+
+        return True # return properly later
 
     def saveContact(self, contact):
         # 1) return if there is already a contact with same name and phone number
@@ -43,7 +53,7 @@ class PhoneBook:
             return
 
         # 2) validate phone number
-        if not self.validatePhoneNumber(contact.getPhoneNumber):
+        if not self.validatePhoneNumber(contact.getPhoneNumber()):
             return
 
         # 3) add contact to list
