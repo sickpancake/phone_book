@@ -25,44 +25,31 @@ class PhoneBook:
     def getContactsByNameAndOrder(self, name, order):
         return self.getContactsByName(name)[int(order) - 1]
 
+    def matchingExisting(self, contact):
+        # todo - code here
+        for c in self.getContacts():
+            if c.getPhoneNumber() == contact.getPhoneNumber() and c.getName() == contact.getName():
+                return True
+            
+        return False
+
+    def valdiatePhoneNumber(self, phoneNumber):
+        # todo - code here
+        return False # return properly later
+
     def saveContact(self, contact):
-        name = contact.getName()
-        phoneNumber = contact.getPhoneNumber()
-        if(len(phoneNumber) == 10):
-            print("first check done!")
+        # 1) return if there is already a contact with same name and phone number
+        if not self.matchingExisting(contact):
+            return
 
-        else:
-            print("has to be 10 digits")
-            exit()
+        # 2) validate phone number
+        if not self.valdiatePhoneNumber(contact.getPhoneNumber):
+            return
 
-        if name in self.list:
-            wantToDouble = input("do you want to double this name cause this name is taken?")
-            print(self.dict)
-            if wantToDouble == "yes":
-                print("second check done!")
-
-            else:
-                print("not doubling")
-                exit()
-
-        else:
-            print("second check done!")
-
-        try:
-            int(phoneNumber)
-        except ValueError:
-            print("number only")
-            exit()
-
-        for x in self.list:
-            if x.phoneNumber == phoneNumber:
-                print("this phone number is taken")
-
-            else:
-                print("last check done!")
-                print("adding...")
-                self.list.append(contact)
-                print("added")
+        # 3) add contact to list
+        print("adding...")
+        self.list.append(contact)
+        print("added")
 
     def updateConact(self, contact, phoneNumber):
         if(len(phoneNumber) == 10):
