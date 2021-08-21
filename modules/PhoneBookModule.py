@@ -33,17 +33,17 @@ class PhoneBook:
             
         return False
 
-    def valdiatePhoneNumber(self, phoneNumber):
+    def validatePhoneNumber(self, phoneNumber):
         # todo - code here
         return False # return properly later
 
     def saveContact(self, contact):
         # 1) return if there is already a contact with same name and phone number
-        if not self.matchingExisting(contact):
+        if self.matchingExisting(contact):
             return
 
         # 2) validate phone number
-        if not self.valdiatePhoneNumber(contact.getPhoneNumber):
+        if not self.validatePhoneNumber(contact.getPhoneNumber):
             return
 
         # 3) add contact to list
