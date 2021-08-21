@@ -42,7 +42,7 @@ class PhoneBookModuleTest(unittest.TestCase):
         self.assertEqual(contact.name, "A", "contact name is not A")
         self.assertEqual(contact.phoneNumber, "1234567890", "contact phone number is not 1234567890")
         phoneBook.saveContact(contact)
-        self.assertEqual(len(phoneBook), 1, "there is no contact in phone book")
+        self.assertEqual(len(phoneBook.getContacts()), 1, "there should be 1 contact in phone book")
 
         #tbc
         self.fail()
