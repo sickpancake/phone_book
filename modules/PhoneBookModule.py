@@ -1,59 +1,67 @@
 #create the phonebook class
+
+import modules.ContactModule as ContactModule
 class PhoneBook:
     def __init__(self):
-        self.dict = {
-
-        }
+        self.list = list()
 
     def getContacts(self):
-        return self.dict
+        return self.list
 
-    def getContact(self, name):
-        pn = self.dict.get(name, None)
-
-        if (pn == None):
+    def getContactsByName(self, name):
+        if (name == None):
             return None
+    
+        return [contact for contact in self.list if contact.name == name]
+ 
+    def getFirstContact(self, name):
+        if (name == None):
+            return None
+    
+        contact = [contact for contact in self.list if contact.name == name]
 
-        contact = Contact(name, pn)
-        return contact
+        return contact[0]
 
-    def saveContact(self, contact):
-        name = contact.getName()
-        phoneNumber = contact.getPhoneNumber()
-        if(len(phoneNumber) == 10):
-            print("first check done!")
+    def getContactsByNameAndOrder(self, name, order):
+        return self.getContactsByName(name)[int(order) - 1]
 
-        else:
+    def matchingExisting(self, contact):
+        # todo - code here
+        for c in self.getContacts():
+            if c.getPhoneNumber() == contact.getPhoneNumber() and c.getName() == contact.getName():
+                return True
+            
+        return False
+
+    def validatePhoneNumber(self, phoneNumber):
+        # todo - code here
+        if(len(phoneNumber) != 10):
             print("has to be 10 digits")
-            exit()
-
-        if name in self.dict:
-            wantToDouble = input("do you want to double this name cause this name is taken?")
-            print(self.dict)
-            if wantToDouble == "yes":
-                print("second check done!")
-
-            else:
-                print("not doubling")
-                exit()
-
-        else:
-            print("second check done!")
+            return False
 
         try:
             int(phoneNumber)
         except ValueError:
             print("number only")
-            exit()
+            return False
 
-        print("last check done!")
+        return True # return properly later
+
+    def saveContact(self, contact):
+        # 1) return if there is already a contact with same name and phone number
+        if self.matchingExisting(contact):
+            return
+
+        # 2) validate phone number
+        if not self.validatePhoneNumber(contact.getPhoneNumber()):
+            return
+
+        # 3) add contact to list
         print("adding...")
-        self.dict[name] = phoneNumber
+        self.list.append(contact)
         print("added")
 
-    def updateConact(self, contact):
-        name = contact.getName()
-        phoneNumber = contact.getPhoneNumber()
+    def updateConact(self, contact, phoneNumber):
         if(len(phoneNumber) == 10):
             print("first check done!")
         else:
@@ -68,19 +76,12 @@ class PhoneBook:
         
         print("last check done!")
         print("changing...")
-        self.dict[name] = phoneNumber
+        contact.setPhoneNumber(phoneNumber)
         print("changed")
 
-    def deleteContact(self, contact):
-        name = contact.getName()
-        if name in self.dict:
-            deleteOrNot = input("Are you sure you want to delete " + name + " from contacts?")
-            if deleteOrNot == "yes":
-                print("deleting...")
-                self.dict.pop(name) 
-            else:
-                print("ok, not deleting")
+    def deleteContact(self, contact, order):
+        if contact in self.list:
+                self.list.pop(int(order) - 1) 
         else:
             print("this contact is not in contacts")
             print("look!")
-            print(self.dict )
