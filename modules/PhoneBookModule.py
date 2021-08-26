@@ -61,24 +61,6 @@ class PhoneBook:
         self.list.append(contact)
         print("added")
 
-    def updateConact(self, contact, phoneNumber):
-        if(len(phoneNumber) == 10):
-            print("first check done!")
-        else:
-            print("has to be 10 digits")
-            exit()
-
-        try:
-            int(phoneNumber)
-        except ValueError:
-            print("number only")
-            exit()
-        
-        print("last check done!")
-        print("changing...")
-        contact.setPhoneNumber(phoneNumber)
-        print("changed")
-
     def deleteContact(self, contact, order):
         if contact in self.list:
                 self.list.pop(int(order) - 1) 
