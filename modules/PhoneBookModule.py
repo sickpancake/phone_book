@@ -18,7 +18,7 @@ class PhoneBook:
         if (name == None):
             return None
     
-        contact = [contact for contact in self.list if contact.name == name]
+        contact=[contact for contact in self.list if contact.name == name]
 
         return contact[0]
 
@@ -28,7 +28,9 @@ class PhoneBook:
     def matchingExisting(self, contact):
         # todo - code here
         for c in self.getContacts():
-            if c.getPhoneNumber() == contact.getPhoneNumber() and c.getName() == contact.getName():
+            rightPhoneNumber = c.getPhoneNumber() == contact.getPhoneNumber()
+            rightName = c.getName() == contact.getName()
+            if rightPhoneNumber and rightName:
                 return True
             
         return False
@@ -62,7 +64,7 @@ class PhoneBook:
         print("added")
 
     def deleteContact(self, contact, order):
-        if contact in self.list:
+        if contact in self.getContacts():
                 self.list.pop(int(order) - 1) 
         else:
             print("this contact is not in contacts")
