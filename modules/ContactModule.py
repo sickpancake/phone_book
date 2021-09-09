@@ -15,3 +15,7 @@ class Contact:
 
     def getName(self):
         return self.name
+
+__all__ = ["name", "phonenumber"]
+__version__ = "3.1"
+__author__ = "Lawrence Wang"

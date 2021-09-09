@@ -65,7 +65,11 @@ class PhoneBook:
 
     def deleteContact(self, contact, order):
         if contact in self.getContacts():
-                self.list.pop(int(order) - 1) 
+                self.list.pop(int(order)-1) 
         else:
             print("this contact is not in contacts")
             print("look!")
+
+__all__ = ["phoneBook"]
+__version__ = "3.1"
+__author__ = "Lawrence Wang"
