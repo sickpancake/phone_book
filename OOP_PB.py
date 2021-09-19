@@ -14,7 +14,11 @@ def print_list(list):
 
 #main loop
 while True:
-    cmd = input("You can read, create and delete. If you don't want to use the code anymore, you can type 'quit' or 'exit'. What do you want to do? ")
+    cmdpartA = "You can read, create and delete."
+    cmdpartB = "If you don't want to use the code anymore, "
+    cmdpartC = "you can type 'quit' or 'exit'."
+    cmdpartD =  "What do you want to do? "
+    cmd = input(cmdpartA + cmdpartB + cmdpartC + cmdpartD)
     if(cmd=="read"):
         print_list(phoneBook.getContacts())
 
