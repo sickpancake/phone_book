@@ -3,11 +3,12 @@ import unittest
 from modules.PhoneBookModule import PhoneBook
 from modules.ContactModule import Contact
 
+
 class PhoneBookModuleTest(unittest.TestCase):
 
     def test_default_phonebook_should_be_empty(self):
         phoneBook = PhoneBook()
-        
+
         expected = 0
         actual = len(phoneBook.getContacts())
 
@@ -22,7 +23,8 @@ class PhoneBookModuleTest(unittest.TestCase):
         actualContact = phoneBook.getFirstContact("A")
 
         self.assertEqual(expectedContact.name, actualContact.name)
-        self.assertEqual(expectedContact.phoneNumber, actualContact.phoneNumber)
+        self.assertEqual(expectedContact.phoneNumber,
+                         actualContact.phoneNumber)
 
     def test_allow_duplicate(self):
         phoneBook = PhoneBook()
@@ -40,13 +42,16 @@ class PhoneBookModuleTest(unittest.TestCase):
 
         contact = Contact("A", "1234567890")
         self.assertEqual(contact.name, "A", "contact name is not A")
-        self.assertEqual(contact.phoneNumber, "1234567890", "contact phone number is not 1234567890")
+        self.assertEqual(contact.phoneNumber, "1234567890",
+                         "contact phone number is not 1234567890")
         phoneBook.saveContact(contact)
-        self.assertEqual(len(phoneBook.getContacts()), 1, "there should be 1 contact in phone book")        
-        
+        self.assertEqual(len(phoneBook.getContacts()), 1,
+                         "there should be 1 contact in phone book")
+
         with self.assertRaises(TypeError):
-            phoneBook.deleteContact(phoneBook.getContactsByNameAndOrder("A", 1), "A")
-    
+            phoneBook.deleteContact(
+                phoneBook.getContactsByNameAndOrder("A", 1), "A")
+
     def test_delete_all_contacts_named_A(self):
         phoneBook = PhoneBook()
 
@@ -55,8 +60,6 @@ class PhoneBookModuleTest(unittest.TestCase):
 
         self.assertEqual(2, len(phoneBook.getContacts()))
 
-        
-        
     def test_delete_second_contact_named_A(self):
         phoneBook = PhoneBook()
 
@@ -64,9 +67,9 @@ class PhoneBookModuleTest(unittest.TestCase):
         phoneBook.saveContact(Contact("A", "0987654321"))
 
         self.assertEqual(2, len(phoneBook.getContacts()))
-        
+
         contact = phoneBook.getContactsByNameAndOrder("A", 2)
-        
+
         phoneBook.deleteContact(contact, 2)
         self.assertEqual(len(phoneBook.list), 1)
         self.assertEqual(contact.phoneNumber, "0987654321")
@@ -78,13 +81,12 @@ class PhoneBookModuleTest(unittest.TestCase):
         phoneBook.saveContact(Contact("A", "0987654321"))
 
         self.assertEqual(2, len(phoneBook.getContacts()))
-        
+
         contact = phoneBook.getContactsByNameAndOrder("A", 1)
-        
+
         phoneBook.deleteContact(contact, 1)
         self.assertEqual(len(phoneBook.list), 1)
         self.assertEqual(contact.phoneNumber, "1234567890")
-
 
     def test_no_duplicate_contact(self):
         phoneBook = PhoneBook()

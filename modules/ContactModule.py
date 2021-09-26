@@ -1,11 +1,11 @@
-#create the Contact class
+# create the Contact class
 
 
 class Contact:
     def __init__(self, name: str, phoneNumber: str):
         self.name = name
         self.phoneNumber = phoneNumber
-    
+
     def setPhoneNumber(self, phoneNumber: str):
         self.phoneNumber = phoneNumber
 

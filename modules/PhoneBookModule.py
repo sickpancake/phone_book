@@ -1,4 +1,4 @@
-#create the phonebook class
+# create the phonebook class
 
 
 from modules.ContactModule import Contact
@@ -14,14 +14,14 @@ class PhoneBook:
     def getContactsByName(self, name: str):
         if (name == None):
             return None
-    
+
         return [contact for contact in self.list if contact.name == name]
- 
+
     def getFirstContact(self, name: str):
         if (name == None):
             return None
-    
-        contact=[contact for contact in self.list if contact.name == name]
+
+        contact = [contact for contact in self.list if contact.name == name]
 
         return contact[0]
 
@@ -35,7 +35,7 @@ class PhoneBook:
             rightName = c.getName() == contact.getName()
             if rightPhoneNumber and rightName:
                 return True
-            
+
         return False
 
     def validatePhoneNumber(self, phoneNumber: str):
@@ -50,9 +50,9 @@ class PhoneBook:
             print("number only")
             return False
 
-        return True # return properly later
+        return True  # return properly later
 
-    def saveContact(self, contact : Contact):
+    def saveContact(self, contact: Contact):
         # 1) return if there is already a contact with same name and phone number
         if self.matchingExisting(contact):
             return
@@ -68,7 +68,7 @@ class PhoneBook:
 
     def deleteContact(self, contact: Contact, order: int):
         if contact in self.getContacts():
-                self.list.pop(order - 1) 
+            self.list.pop(order - 1)
         else:
             print("this contact is not in contacts")
             print("look!")
