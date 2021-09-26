@@ -17,7 +17,7 @@ class PhoneBook:
 
         return [contact for contact in self.list if contact.name == name]
 
-    def getFirstContact(self, name: str):
+    def getFirstContact(self, name: str) -> Contact:
         if (name == None):
             return None
 
@@ -53,6 +53,8 @@ class PhoneBook:
         return True  # return properly later
 
     def saveContact(self, contact: Contact):
+        """Save a contact to phonebook"""
+
         # 1) return if there is already a contact with same name and phone number
         if self.matchingExisting(contact):
             return
