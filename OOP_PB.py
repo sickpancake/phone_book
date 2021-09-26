@@ -40,7 +40,6 @@ while True:
             print("contact does not exist")
             continue
         
-        
         phoneBook.deleteContact(contact, order)
 
         list = phoneBook.getContacts()

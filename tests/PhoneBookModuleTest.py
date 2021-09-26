@@ -44,7 +44,7 @@ class PhoneBookModuleTest(unittest.TestCase):
         phoneBook.saveContact(contact)
         self.assertEqual(len(phoneBook.getContacts()), 1, "there should be 1 contact in phone book")        
         
-        with self.assertRaises(ValueError):
+        with self.assertRaises(TypeError):
             phoneBook.deleteContact(phoneBook.getContactsByNameAndOrder("A", 1), "A")
     
     def test_delete_all_contacts_named_A(self):

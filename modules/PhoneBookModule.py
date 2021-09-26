@@ -1,7 +1,9 @@
 #create the phonebook class
 
 
-import modules.ContactModule as ContactModule
+from modules.ContactModule import Contact
+
+
 class PhoneBook:
     def __init__(self):
         self.list = list()
@@ -9,13 +11,13 @@ class PhoneBook:
     def getContacts(self):
         return self.list
 
-    def getContactsByName(self, name):
+    def getContactsByName(self, name: str):
         if (name == None):
             return None
     
         return [contact for contact in self.list if contact.name == name]
  
-    def getFirstContact(self, name):
+    def getFirstContact(self, name: str):
         if (name == None):
             return None
     
@@ -23,10 +25,10 @@ class PhoneBook:
 
         return contact[0]
 
-    def getContactsByNameAndOrder(self, name, order):
-        return self.getContactsByName(name)[int(order) - 1]
+    def getContactsByNameAndOrder(self, name: str, order: int):
+        return self.getContactsByName(name)[order - 1]
 
-    def matchingExisting(self, contact):
+    def matchingExisting(self, contact: Contact):
         # todo - code here
         for c in self.getContacts():
             rightPhoneNumber = c.getPhoneNumber() == contact.getPhoneNumber()
@@ -36,7 +38,7 @@ class PhoneBook:
             
         return False
 
-    def validatePhoneNumber(self, phoneNumber):
+    def validatePhoneNumber(self, phoneNumber: str):
         # todo - code here
         if(len(phoneNumber) != 10):
             print("has to be 10 digits")
@@ -50,7 +52,7 @@ class PhoneBook:
 
         return True # return properly later
 
-    def saveContact(self, contact):
+    def saveContact(self, contact : Contact):
         # 1) return if there is already a contact with same name and phone number
         if self.matchingExisting(contact):
             return
@@ -64,14 +66,9 @@ class PhoneBook:
         self.list.append(contact)
         print("added")
 
-    def deleteContact(self, contact, order):
+    def deleteContact(self, contact: Contact, order: int):
         if contact in self.getContacts():
-                self.list.pop(int(order)-1) 
+                self.list.pop(order - 1) 
         else:
             print("this contact is not in contacts")
             print("look!")
-
-
-__all__ = ["phoneBook"]
-__version__ = "3.1"
-__author__ = "Lawrence Wang"
