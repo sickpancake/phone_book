@@ -10,7 +10,7 @@ if __name__ == "__main__":
 
 def print_list(list: List[Contact]):
     for contact in list:
-        print(contact.name + ': ' + contact.phoneNumber)
+        print(contact.name + ": " + contact.phoneNumber)
     
 
 #main loop
