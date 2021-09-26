@@ -1,4 +1,5 @@
 #import the classes
+from typing import List
 from modules.ContactModule import Contact 
 from modules.PhoneBookModule import PhoneBook
 
@@ -7,16 +8,16 @@ if __name__ == "__main__":
     phoneBook = PhoneBook()
 
 
-def print_list(list):
-    for conact in list:
-            print(conact.name + ': ' + conact.phoneNumber)
+def print_list(list: List[Contact]):
+    for contact in list:
+        print(contact.name + ': ' + contact.phoneNumber)
     
 
 #main loop
 while True:
-    cmdpartA = "You can read, create and delete."
+    cmdpartA = "You can read, create and delete. "
     cmdpartB = "If you don't want to use the code anymore, "
-    cmdpartC = "you can type 'quit' or 'exit'."
+    cmdpartC = "you can type 'quit' or 'exit'. "
     cmdpartD =  "What do you want to do? "
     cmd = input(cmdpartA + cmdpartB + cmdpartC + cmdpartD)
     if(cmd=="read"):
