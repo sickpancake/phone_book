@@ -8,7 +8,8 @@ if __name__ == "__main__":
     phoneBook = PhoneBook()
 
 
-def print_list(list: List[Contact]):
+def print_list(list: List[Contact]) -> None:
+    """print a list"""
     for contact in list:
         print(contact.name + ": " + contact.phoneNumber)
 
