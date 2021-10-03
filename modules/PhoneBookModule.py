@@ -37,7 +37,7 @@ class PhoneBook:
         for c in self.get_contacts():
             rightPhoneNumber = c.get_phone_number() == contact.get_phone_number()
             rightName = c.get_name() == contact.get_name()
-            if rightPhoneNumber and rightName == True:
+            if rightPhoneNumber and rightName:
                 return True
         
         return False
