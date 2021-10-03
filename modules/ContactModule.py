@@ -6,18 +6,18 @@ class Contact:
         self.name = name
         self.phoneNumber = phoneNumber
 
-    def setPhoneNumber(self, phoneNumber: str) -> None:
+    def set_phone_number(self, phoneNumber: str) -> None:
         """set an phonenumber"""
         self.phoneNumber = phoneNumber
 
-    def getPhoneNumber(self) -> str:
+    def get_phone_number(self) -> str:
         """get the phonenumber"""
         return self.phoneNumber
 
-    def setName(self, name: str) -> None:
+    def set_name(self, name: str) -> None:
         """set the name"""
         self.name = name
 
-    def getName(self) -> str:
+    def get_name(self) -> str:
         """get the name"""
         return self.name

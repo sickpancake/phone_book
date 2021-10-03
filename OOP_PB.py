@@ -22,32 +22,32 @@ while True:
     cmdpartD = "What do you want to do? "
     cmd = input(cmdpartA + cmdpartB + cmdpartC + cmdpartD)
     if(cmd == "read"):
-        print_list(phoneBook.getContacts())
+        print_list(phoneBook.get_contacts())
 
     if(cmd == "create"):
         p = input("person's name? ")
         pn = input("phone number? ")
 
         contact = Contact(p, pn)
-        phoneBook.saveContact(contact)
+        phoneBook.save_contact(contact)
 
-        print_list(phoneBook.getContacts())
+        print_list(phoneBook.get_contacts())
 
     if(cmd == "delete"):
         pn = input("name? ")
         order = input("order? ")
-        contact = phoneBook.getContactsByNameAndOrder(pn, order)
+        contact = phoneBook.get_contacts_by_name_and_order(pn, order)
 
         if (contact == None):
             print("contact does not exist")
             continue
 
-        phoneBook.deleteContact(contact, order)
+        phoneBook.delete_contact(contact, order)
 
-        list = phoneBook.getContacts()
+        list = phoneBook.get_contacts()
 
         if len(list) == 1:
-            print_list(phoneBook.getContacts())
+            print_list(phoneBook.get_contacts())
 
         else:
             print("there are no contacts in phonebook now")
