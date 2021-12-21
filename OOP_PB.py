@@ -1,5 +1,4 @@
 # import the classes
-from typing import List
 from modules.ContactModule import Contact
 from modules.PhoneBookModule import PhoneBook
 
@@ -9,7 +8,7 @@ if __name__ == "__main__":
     phone_book = PhoneBook()
 
 
-def print_list(list: List[Contact]) -> None:
+def print_list(list: list[Contact]) -> None:
     """print a list"""
     for contact in list:
         print(contact.name + ": " + contact.phoneNumber)
@@ -45,9 +44,9 @@ while True:
 
         phone_book.delete_contact(contact, order)
 
-        list = phone_book.get_contacts()
+        list_phonenumbers = phone_book.get_contacts()
 
-        if len(list) == 1:
+        if len(list_phonenumbers) == 1:
             print_list(phone_book.get_contacts())
 
         else:
