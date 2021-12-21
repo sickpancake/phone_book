@@ -1,7 +1,9 @@
+'''Contact class'''
 # create the Contact class
 
 
 class Contact:
+    '''create the contact class'''
     def __init__(self, name: str, phoneNumber: str):
         self.name = name
         self.phoneNumber = phoneNumber
