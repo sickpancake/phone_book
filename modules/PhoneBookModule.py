@@ -1,3 +1,4 @@
+'''phonebook module'''
 # create the phonebook class
 
 
@@ -5,6 +6,7 @@ from modules.ContactModule import Contact
 
 
 class PhoneBook:
+    """create phonebook class"""
     def __init__(self):
         self.list = list()
 
@@ -14,14 +16,14 @@ class PhoneBook:
 
     def get_contacts_by_name(self, name: str) -> list:
         """get an contact by it's name"""
-        if (name == None):
+        if (name is None):
             return None
 
         return [contact for contact in self.list if contact.name == name]
 
     def get_first_contact(self, name: str) -> Contact:
         """get the first contact of a name"""
-        if (name == None):
+        if (name is None):
             return None
 
         contact = [contact for contact in self.list if contact.name == name]
@@ -35,9 +37,9 @@ class PhoneBook:
     def matching_existing(self, contact: Contact) -> Contact:
         """see if there's an contact in the phonebook that have the same properties"""
         for c in self.get_contacts():
-            rightPhoneNumber = c.get_phone_number() == contact.get_phone_number()
-            rightName = c.get_name() == contact.get_name()
-            if rightPhoneNumber and rightName:
+            right_phonenumber = c.get_phone_number() == contact.get_phone_number()
+            right_name = c.get_name() == contact.get_name()
+            if right_phonenumber and right_name:
                 return True
         
         return False
