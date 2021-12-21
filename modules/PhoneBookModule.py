@@ -1,59 +1,72 @@
-#create the phonebook class
+'''phonebook module'''
+# create the phonebook class
 
-import modules.ContactModule as ContactModule
+
+from modules.ContactModule import Contact
+
+
 class PhoneBook:
+    """create phonebook class"""
     def __init__(self):
         self.list = list()
 
-    def getContacts(self):
+    def get_contacts(self) -> list:
+        """get the contacts of this list"""
         return self.list
 
-    def getContactsByName(self, name):
-        if (name == None):
+    def get_contacts_by_name(self, name: str) -> list:
+        """get an contact by it's name"""
+        if name is None:
             return None
-    
+
         return [contact for contact in self.list if contact.name == name]
- 
-    def getFirstContact(self, name):
-        if (name == None):
+
+    def get_first_contact(self, name: str) -> Contact:
+        """get the first contact of a name"""
+        if name is None:
             return None
-    
+
         contact = [contact for contact in self.list if contact.name == name]
 
         return contact[0]
 
-    def getContactsByNameAndOrder(self, name, order):
-        return self.getContactsByName(name)[int(order) - 1]
+    def get_contacts_by_name_and_order(self, name: str, order: int) -> list:
+        """get an contact by there name and there order"""
+        return self.get_contacts_by_name(name)[order - 1]
 
-    def matchingExisting(self, contact):
-        # todo - code here
-        for c in self.getContacts():
-            if c.getPhoneNumber() == contact.getPhoneNumber() and c.getName() == contact.getName():
+    def matching_existing(self, contact: Contact) -> Contact:
+        """see if there's an contact in the phonebook that have the same properties"""
+        for looped_contact in self.get_contacts():
+            right_phonenumber = looped_contact.get_phone_number() == contact.get_phone_number()
+            right_name = looped_contact.get_name() == contact.get_name()
+            if right_phonenumber and right_name:
                 return True
-            
+
         return False
 
-    def validatePhoneNumber(self, phoneNumber):
-        # todo - code here
-        if(len(phoneNumber) != 10):
+    def validate_phone_number(self, phonenumber: str) -> str:
+        """check if the number has the right conditions"""
+        if len(phonenumber) != 10:
             print("has to be 10 digits")
             return False
 
         try:
-            int(phoneNumber)
+            int(phonenumber)
         except ValueError:
             print("number only")
             return False
 
-        return True # return properly later
+        return True
 
-    def saveContact(self, contact):
-        # 1) return if there is already a contact with same name and phone number
-        if self.matchingExisting(contact):
+    def save_contact(self, contact: Contact) -> None:
+        """Save a contact to phonebook"""
+
+        # 1) return if there's already a contact with same propaties
+        if self.matching_existing(contact):
             return
 
         # 2) validate phone number
-        if not self.validatePhoneNumber(contact.getPhoneNumber()):
+        if not self.validate_phone_number(contact.get_phone_number()):
             return
 
         # 3) add contact to list
@@ -61,9 +74,11 @@ class PhoneBook:
         self.list.append(contact)
         print("added")
 
-    def deleteContact(self, contact, order):
-        if contact in self.list:
-                self.list.pop(int(order) - 1) 
+
+    def delete_contact(self, contact: Contact, order: int) -> None:
+        """delete an contact"""
+        if contact in self.get_contacts():
+            self.list.pop(order - 1)
         else:
             print("this contact is not in contacts")
             print("look!")

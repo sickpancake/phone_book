@@ -1,41 +1,55 @@
-#import the classes
-from modules.ContactModule import Contact 
+'''main program'''
+# import the classes
+from modules.ContactModule import Contact
 from modules.PhoneBookModule import PhoneBook
+
 
 if __name__ == "__main__":
 
-    phoneBook = PhoneBook()
+    phone_book = PhoneBook()
 
-#main loop
+def print_list(list_of_objects: list[Contact]) -> None:
+    """print a list"""
+    for contact in list_of_objects:
+        print(contact.name + ": " + contact.phonenumber)
+
+# main loop
 while True:
-    cmd = input("You can read, create and delete. If you don't want to use the code anymore, you can type 'quit' or 'exit'. What do you want to do? ")
-    if(cmd=="read"):
-         for conact in phoneBook.list:
-            print(conact.name + ': ' + conact.phoneNumber)
+    CMD_PART_A = "You can read, create and delete. "
+    CMD_PART_B = "If you don't want to use the code anymore, "
+    CMD_PART_C = "you can type 'quit' or 'exit'. "
+    CMD_PART_D = "What do you want to do? "
+    cmd = input(CMD_PART_A + CMD_PART_B + CMD_PART_C + CMD_PART_D)
+    if cmd == "read":
+        print_list(phone_book.get_contacts())
 
-    if(cmd=="create"):
+    if cmd == "create":
         p = input("person's name? ")
         pn = input("phone number? ")
-        
+
         contact = Contact(p, pn)
-        phoneBook.saveContact(contact)
+        phone_book.save_contact(contact)
 
-        for conact in phoneBook.list:
-            print(conact.name + ': ' + conact.phoneNumber)
+        print_list(phone_book.get_contacts())
 
-    if(cmd=="delete"):
+    if cmd == "delete":
         pn = input("name? ")
-        order = input("order?")
-        contact = phoneBook.getContactsByNameAndOrder(pn, order)
-        
-        if (contact == None):
+        order = input("order? ")
+        contact = phone_book.get_contacts_by_name_and_order(pn, order)
+
+        if contact is None:
             print("contact does not exist")
             continue
-        
-        phoneBook.deleteContact(contact, order)
 
-        for conact in phoneBook.list:
-            print(conact.name + ': ' + conact.phoneNumber)
+        phone_book.delete_contact(contact, order)
 
-    if(cmd=="quit" or cmd=="exit"):
+        list_phonenumbers = phone_book.get_contacts()
+
+        if len(list_phonenumbers) == 1:
+            print_list(phone_book.get_contacts())
+
+        else:
+            print("there are no contacts in phonebook now")
+
+    if(cmd == "quit" or cmd == "exit"):
         break

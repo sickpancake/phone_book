@@ -1,17 +1,25 @@
-#create the Contact class
+'''Contact class'''
+# create the Contact class
+
+
 class Contact:
-    def __init__(self, name, phoneNumber):
+    '''create the contact class'''
+    def __init__(self, name: str, phonenumber: str):
         self.name = name
-        self.phoneNumber = phoneNumber
-    
-    def setPhoneNumber(self, phoneNumber):
-        self.phoneNumber = phoneNumber
+        self.phonenumber = phonenumber
 
-    def getPhoneNumber(self):
-        return self.phoneNumber
+    def set_phone_number(self, phonenumber: str) -> None:
+        """set an phonenumber"""
+        self.phonenumber = phonenumber
 
-    def setName(self, name):
+    def get_phone_number(self) -> str:
+        """get the phonenumber"""
+        return self.phonenumber
+
+    def set_name(self, name: str) -> None:
+        """set the name"""
         self.name = name
 
-    def getName(self):
+    def get_name(self) -> str:
+        """get the name"""
         return self.name
