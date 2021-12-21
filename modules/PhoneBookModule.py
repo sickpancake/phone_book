@@ -74,6 +74,7 @@ class PhoneBook:
         self.list.append(contact)
         print("added")
 
+
     def delete_contact(self, contact: Contact, order: int) -> None:
         """delete an contact"""
         if contact in self.get_contacts():

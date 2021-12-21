@@ -8,12 +8,10 @@ if __name__ == "__main__":
 
     phone_book = PhoneBook()
 
-
 def print_list(list_of_objects: list[Contact]) -> None:
     """print a list"""
     for contact in list_of_objects:
         print(contact.name + ": " + contact.phonenumber)
-
 
 # main loop
 while True:
