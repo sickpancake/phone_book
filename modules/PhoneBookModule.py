@@ -16,14 +16,14 @@ class PhoneBook:
 
     def get_contacts_by_name(self, name: str) -> list:
         """get an contact by it's name"""
-        if (name is None):
+        if name is None:
             return None
 
         return [contact for contact in self.list if contact.name == name]
 
     def get_first_contact(self, name: str) -> Contact:
         """get the first contact of a name"""
-        if (name is None):
+        if name is None:
             return None
 
         contact = [contact for contact in self.list if contact.name == name]
@@ -41,12 +41,12 @@ class PhoneBook:
             right_name = c.get_name() == contact.get_name()
             if right_phonenumber and right_name:
                 return True
-        
+
         return False
 
     def validate_phone_number(self, phoneNumber: str) -> str:
         """check if the number has the right conditions"""
-        if(len(phoneNumber) != 10):
+        if len(phoneNumber) != 10:
             print("has to be 10 digits")
             return False
 
@@ -56,7 +56,7 @@ class PhoneBook:
             print("number only")
             return False
 
-        return True  
+        return True
 
     def save_contact(self, contact: Contact) -> None:
         """Save a contact to phonebook"""
@@ -81,3 +81,4 @@ class PhoneBook:
         else:
             print("this contact is not in contacts")
             print("look!")
+            
