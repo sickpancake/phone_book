@@ -1,3 +1,4 @@
+'''main program'''
 # import the classes
 from modules.ContactModule import Contact
 from modules.PhoneBookModule import PhoneBook
@@ -8,23 +9,23 @@ if __name__ == "__main__":
     phone_book = PhoneBook()
 
 
-def print_list(list: list[Contact]) -> None:
+def print_list(list_of_objects: list[Contact]) -> None:
     """print a list"""
-    for contact in list:
+    for contact in list_of_objects:
         print(contact.name + ": " + contact.phoneNumber)
 
 
 # main loop
 while True:
-    cmd_part_a = "You can read, create and delete. "
-    cmd_part_b = "If you don't want to use the code anymore, "
-    cmd_part_c = "you can type 'quit' or 'exit'. "
-    cmdpartD = "What do you want to do? "
-    cmd = input(cmd_part_a + cmd_part_b + cmd_part_c + cmdpartD)
-    if(cmd == "read"):
+    CMD_PART_A = "You can read, create and delete. "
+    CMD_PART_B = "If you don't want to use the code anymore, "
+    CMD_PART_C = "you can type 'quit' or 'exit'. "
+    CMD_PART_D = "What do you want to do? "
+    cmd = input(CMD_PART_A + CMD_PART_B + CMD_PART_C + CMD_PART_D)
+    if cmd == "read":
         print_list(phone_book.get_contacts())
 
-    if(cmd == "create"):
+    if cmd == "create":
         p = input("person's name? ")
         pn = input("phone number? ")
 
@@ -33,12 +34,12 @@ while True:
 
         print_list(phone_book.get_contacts())
 
-    if(cmd == "delete"):
+    if cmd == "delete":
         pn = input("name? ")
         order = input("order? ")
         contact = phone_book.get_contacts_by_name_and_order(pn, order)
 
-        if (contact == None):
+        if contact == None:
             print("contact does not exist")
             continue
 
