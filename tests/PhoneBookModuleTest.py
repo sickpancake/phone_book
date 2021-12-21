@@ -50,7 +50,9 @@ class PhoneBookModuleTest(unittest.TestCase):
 
         with self.assertRaises(TypeError):
             phoneBook.delete_contact(
-                phoneBook.get_contacts_by_name_and_order("A", 1), "A")
+                phoneBook.get_contacts_by_name_and_order("A", 1),
+                "A"
+            )
 
     def test_delete_all_contacts_named_A(self):
         phoneBook = PhoneBook()
