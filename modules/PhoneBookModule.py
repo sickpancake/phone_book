@@ -44,14 +44,14 @@ class PhoneBook:
 
         return False
 
-    def validate_phone_number(self, phoneNumber: str) -> str:
+    def validate_phone_number(self, phonenumber: str) -> str:
         """check if the number has the right conditions"""
-        if len(phoneNumber) != 10:
+        if len(phonenumber) != 10:
             print("has to be 10 digits")
             return False
 
         try:
-            int(phoneNumber)
+            int(phonenumber)
         except ValueError:
             print("number only")
             return False
@@ -81,4 +81,3 @@ class PhoneBook:
         else:
             print("this contact is not in contacts")
             print("look!")
-            

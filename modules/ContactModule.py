@@ -4,17 +4,17 @@
 
 class Contact:
     '''create the contact class'''
-    def __init__(self, name: str, phoneNumber: str):
+    def __init__(self, name: str, phonenumber: str):
         self.name = name
-        self.phoneNumber = phoneNumber
+        self.phonenumber = phonenumber
 
-    def set_phone_number(self, phoneNumber: str) -> None:
+    def set_phone_number(self, phonenumber: str) -> None:
         """set an phonenumber"""
-        self.phoneNumber = phoneNumber
+        self.phonenumber = phonenumber
 
     def get_phone_number(self) -> str:
         """get the phonenumber"""
-        return self.phoneNumber
+        return self.phonenumber
 
     def set_name(self, name: str) -> None:
         """set the name"""
