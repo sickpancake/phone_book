@@ -36,9 +36,9 @@ class PhoneBook:
 
     def matching_existing(self, contact: Contact) -> Contact:
         """see if there's an contact in the phonebook that have the same properties"""
-        for c in self.get_contacts():
-            right_phonenumber = c.get_phone_number() == contact.get_phone_number()
-            right_name = c.get_name() == contact.get_name()
+        for looped_contact in self.get_contacts():
+            right_phonenumber = looped_contact.get_phone_number() == contact.get_phone_number()
+            right_name = looped_contact.get_name() == contact.get_name()
             if right_phonenumber and right_name:
                 return True
 
