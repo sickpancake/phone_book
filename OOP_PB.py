@@ -3,9 +3,10 @@ from typing import List
 from modules.ContactModule import Contact
 from modules.PhoneBookModule import PhoneBook
 
+
 if __name__ == "__main__":
 
-    phoneBook = PhoneBook()
+    phone_book = PhoneBook()
 
 
 def print_list(list: List[Contact]) -> None:
@@ -16,38 +17,38 @@ def print_list(list: List[Contact]) -> None:
 
 # main loop
 while True:
-    cmdpartA = "You can read, create and delete. "
-    cmdpartB = "If you don't want to use the code anymore, "
-    cmdpartC = "you can type 'quit' or 'exit'. "
+    cmd_part_a = "You can read, create and delete. "
+    cmd_part_b = "If you don't want to use the code anymore, "
+    cmd_part_c = "you can type 'quit' or 'exit'. "
     cmdpartD = "What do you want to do? "
-    cmd = input(cmdpartA + cmdpartB + cmdpartC + cmdpartD)
+    cmd = input(cmd_part_a + cmd_part_b + cmd_part_c + cmdpartD)
     if(cmd == "read"):
-        print_list(phoneBook.get_contacts())
+        print_list(phone_book.get_contacts())
 
     if(cmd == "create"):
         p = input("person's name? ")
         pn = input("phone number? ")
 
         contact = Contact(p, pn)
-        phoneBook.save_contact(contact)
+        phone_book.save_contact(contact)
 
-        print_list(phoneBook.get_contacts())
+        print_list(phone_book.get_contacts())
 
     if(cmd == "delete"):
         pn = input("name? ")
         order = input("order? ")
-        contact = phoneBook.get_contacts_by_name_and_order(pn, order)
+        contact = phone_book.get_contacts_by_name_and_order(pn, order)
 
         if (contact == None):
             print("contact does not exist")
             continue
 
-        phoneBook.delete_contact(contact, order)
+        phone_book.delete_contact(contact, order)
 
-        list = phoneBook.get_contacts()
+        list = phone_book.get_contacts()
 
         if len(list) == 1:
-            print_list(phoneBook.get_contacts())
+            print_list(phone_book.get_contacts())
 
         else:
             print("there are no contacts in phonebook now")

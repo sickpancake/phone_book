@@ -33,7 +33,7 @@ class PhoneBook:
         return self.get_contacts_by_name(name)[order - 1]
 
     def matching_existing(self, contact: Contact) -> Contact:
-        """see if there is an contact in the phonebook that have the same properties"""
+        """see if there's an contact in the phonebook that have the same properties"""
         for c in self.get_contacts():
             rightPhoneNumber = c.get_phone_number() == contact.get_phone_number()
             rightName = c.get_name() == contact.get_name()
@@ -59,7 +59,7 @@ class PhoneBook:
     def save_contact(self, contact: Contact) -> None:
         """Save a contact to phonebook"""
 
-        # 1) return if there is already a contact with same name and phone number
+        # 1) return if there's already a contact with same propaties
         if self.matching_existing(contact):
             return
 
