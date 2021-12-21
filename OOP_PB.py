@@ -39,7 +39,7 @@ while True:
         order = input("order? ")
         contact = phone_book.get_contacts_by_name_and_order(pn, order)
 
-        if contact == None:
+        if contact is None:
             print("contact does not exist")
             continue
 
