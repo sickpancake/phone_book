@@ -3,10 +3,12 @@
 from modules.ContactModule import Contact
 from modules.phonebook_module_two import PhoneBook
 
+
 def print_list(list_of_objects: list[Contact]) -> None:
     """print a list"""
     for contact in list_of_objects:
         print(contact.name + ": " + contact.phonenumber)
+
 
 if __name__ == "__main__":
 
