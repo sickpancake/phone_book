@@ -20,7 +20,22 @@ class PhoneBook:
 
         self.connection = sqlite3.connect(self.dbpath)
         self.cursor = self.connection.cursor()
+        self.initialize()
 
     def __del__(self):
         print('closing database')
         self.connection.close()
+
+    def initialize(self):
+        self.cursor.execute(
+            '''
+            create table if not exists phonebook
+            (
+                id integer primary key,
+                name text, 
+                phonenumber text
+            )
+            '''
+        )
+
+        self.connection.commit()
