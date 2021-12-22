@@ -89,3 +89,20 @@ class PhoneBook:
 
         # return list
         return contact_list
+
+    def get_contacts_by_name_and_order(self, name: str, order: int) -> list[Contact]:
+        return self.get_contacts_by_name(name)[order - 1]
+
+    def matching_existing(self, contact: Contact) -> None
+    
+    def validate_phone_number(self, phonenumber: str) -> str:
+        """check if the number has the right conditions"""
+        if len(phonenumber) != 10:
+            print("has to be 10 digits")
+            return False
+
+        try:
+            int(phonenumber)
+        except ValueError:
+            print("number only")
+            return False
