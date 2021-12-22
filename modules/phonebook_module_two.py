@@ -63,3 +63,29 @@ class PhoneBook:
 
         # return the list
         return contact_list
+
+    def get_contacts_by_name(self, name: str) -> list[Contact]:
+
+        # create an empty contact list first
+        contact_list = list[Contact]()
+
+        for each_row in self.cursor.execute(
+            '''
+            select * from phonebook where name = :name
+            ''',
+            {
+                "name": name
+            }
+        ):
+            # get contact name and phonenumber from this row
+            contact_name = each_row[1]
+            contact_phonenumber = each_row[2]
+
+            # assemble name and phonenumber into a contact
+            contact = Contact(contact_name, contact_phonenumber)
+
+            # add the assembled contact into the list
+            contact_list.append(contact)
+
+        # return list
+        return contact_list
