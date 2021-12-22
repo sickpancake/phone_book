@@ -93,7 +93,10 @@ class PhoneBook:
     def get_contacts_by_name_and_order(self, name: str, order: int) -> list[Contact]:
         return self.get_contacts_by_name(name)[order - 1]
 
-    def matching_existing(self, contact: Contact) -> None
+    def matching_existing(self, contact: Contact) -> None:
+
+        contact_phonenumber = contact.phonenumber
+        contact_name = contact.name
     
     def validate_phone_number(self, phonenumber: str) -> str:
         """check if the number has the right conditions"""
