@@ -20,7 +20,8 @@ class PhoneBookModuleTest(unittest.TestCase):
         expectedContact = Contact("A", "0123456789")
         phoneBook.save_contact(expectedContact)
 
-        actualContact = phoneBook.get_contacts_by_name("A")
+        actualContact = phoneBook.get_contacts_by_name("A")[0]
+
 
         self.assertEqual(expectedContact.name, actualContact.name)
         self.assertEqual(expectedContact.phonenumber,
