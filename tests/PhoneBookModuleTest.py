@@ -1,6 +1,6 @@
 import unittest
 
-from modules.PhoneBookModule import PhoneBook
+from modules.phonebook_module_two import PhoneBook
 from modules.ContactModule import Contact
 
 
@@ -20,7 +20,7 @@ class PhoneBookModuleTest(unittest.TestCase):
         expectedContact = Contact("A", "0123456789")
         phoneBook.save_contact(expectedContact)
 
-        actualContact = phoneBook.get_first_contact("A")
+        actualContact = phoneBook.get_contacts_by_name("A")
 
         self.assertEqual(expectedContact.name, actualContact.name)
         self.assertEqual(expectedContact.phonenumber,
