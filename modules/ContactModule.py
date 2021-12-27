@@ -3,7 +3,7 @@
 
 
 class Contact:
-    '''create the contact class'''
+    '''an object that contains a name and phonenumber'''
     def __init__(self, name: str, phonenumber: str):
         self.name = name
         self.phonenumber = phonenumber

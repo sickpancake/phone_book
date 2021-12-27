@@ -91,7 +91,11 @@ class PhoneBook:
         return contact_list
 
     def get_contacts_by_name_and_order(self, name: str, order: int) -> list[Contact]:
-        return self.get_contacts_by_name(name)[order - 1]
+        contacts_by_name = self.get_contacts_by_name(name)
+        contacts_by_name_at_order = contacts_by_name[order - 1]
+        contacts = []
+        contacts.append(contacts_by_name_at_order)
+        return contacts
 
     def matching_existing(self, contact: Contact) -> None:
         # get the contact's name and phonenumber
@@ -111,7 +115,7 @@ class PhoneBook:
             same_name = each_row[1] == contact_name
 
             # if both true return true
-            if same_phonenumber and same_name:
+            if same_phonenumber == True and same_name == True:
                 return True
 
         # after looking through all the contacts and still none, return flase
@@ -158,3 +162,24 @@ class PhoneBook:
         
         self.connection.commit()
         print("added")
+
+    def delete_contact(self, contact: Contact, order):
+        if contact == None:
+            return
+
+        if len(self.get_contacts()) < int(order):
+            return
+
+        self.cursor.execute(
+            '''
+            delete from phonebook where id = :order and name = :name
+            ''',
+            {
+                'order': int(order),
+                'name': contact.get_name()
+            }
+        )
+
+        self.connection.commit()
+
+        
