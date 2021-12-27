@@ -36,17 +36,17 @@ if __name__ == "__main__":
         if cmd == "delete":
             pn = input("name? ")
             order = input("order? ")
-            contact = phone_book.get_contacts_by_name_and_order(pn, order)
+            contact = phone_book.get_contacts_by_name_and_order(pn, int(order))
 
             if contact is None:
                 print("contact does not exist")
-                continue
+                break
 
             phone_book.delete_contact(contact, order)
 
             list_phonenumbers = phone_book.get_contacts()
 
-            if len(list_phonenumbers) == 1:
+            if len(list_phonenumbers) == 1 or len(list_phonenumbers) > 1:
                 print_list(phone_book.get_contacts())
 
             else:
