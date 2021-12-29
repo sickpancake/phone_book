@@ -54,9 +54,10 @@ class PhoneBook:
             # get contact name and phonenumber from this row
             name = each_row[1]
             phonenumber = each_row[2]
+            contact_id = each_row[0]
 
             # assemble name and phonenumber into a contact
-            contact = Contact(name, phonenumber)
+            contact = Contact(contact_id, name, phonenumber)
 
             # add the assembled contact into the list
             contact_list.append(contact)
@@ -78,11 +79,12 @@ class PhoneBook:
             }
         ):
             # get contact name and phonenumber from this row
+            contact_id = each_row[0]
             contact_name = each_row[1]
             contact_phonenumber = each_row[2]
 
-            # assemble name and phonenumber into a contact
-            contact = Contact(contact_name, contact_phonenumber)
+            # assemble id, name and phonenumber into a contact
+            contact = Contact(contact_id, contact_name, contact_phonenumber)
 
             # add the assembled contact into the list
             contact_list.append(contact)
@@ -96,6 +98,25 @@ class PhoneBook:
         contacts = []
         contacts.append(contacts_by_name_at_order)
         return contacts
+
+    def get_contacts_by_id(self, id: int) -> Contact:
+        row = self.cursor.execute(
+            '''
+            select * from phonebook where id = :id
+            ''',
+            {
+                'id': id
+            }
+        )
+
+        contact_id = row[0]
+        contact_name = row[1]
+        contact_phonenumber = row[2]
+
+        contact = Contact(contact_id, contact_name, contact_phonenumber)
+        
+        return contact
+
 
     def matching_existing(self, contact: Contact) -> None:
         # get the contact's name and phonenumber
@@ -141,7 +162,7 @@ class PhoneBook:
     def save_contact(self, contact: Contact) -> None:
 
         # reutrn if there's already a contact with the same properties
-        if self.matching_existing(contact):
+        if self.matching_existing(contact) == True:
             return
 
         # validate phonenumber
@@ -163,23 +184,32 @@ class PhoneBook:
         self.connection.commit()
         print("added")
 
-    def delete_contact(self, contact: Contact, order):
+    def delete_contact(self, contact: Contact, id):
         if contact == None:
             return
 
-        if len(self.get_contacts()) < int(order):
+        if len(self.get_contacts()) < id:
             return
 
         self.cursor.execute(
             '''
-            delete from phonebook where id = :order and name = :name
+            delete from phonebook where id = :id
             ''',
             {
-                'order': int(order),
-                'name': contact.get_name()
+                'id': id
             }
         )
 
         self.connection.commit()
 
-        
+    def delete_all_contacts_by_name(self, name: str) -> None:
+        self.cursor.execute(
+            '''
+            delete from phonebook where name = :name
+            ''',
+            {
+                "name": name
+            }
+        )
+
+        self.connection.commit()

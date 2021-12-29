@@ -8,6 +8,7 @@ class PhoneBookModuleTest(unittest.TestCase):
 
     def test_default_phonebook_should_be_empty(self):
         phoneBook = PhoneBook()
+        phoneBook.initialize
 
         expected = 0
         actual = len(phoneBook.get_contacts())
@@ -29,6 +30,7 @@ class PhoneBookModuleTest(unittest.TestCase):
 
     def test_allow_duplicate(self):
         phoneBook = PhoneBook()
+        phoneBook.initialize()
 
         contact1 = Contact("A", "1234567890")
         contact2 = Contact("A", "0987654321")
@@ -40,6 +42,7 @@ class PhoneBookModuleTest(unittest.TestCase):
 
     def test_order_should_be_numbers(self):
         phoneBook = PhoneBook()
+        phoneBook.initialize()
 
         contact = Contact("A", "1234567890")
         self.assertEqual(contact.name, "A", "contact name is not A")
@@ -57,11 +60,14 @@ class PhoneBookModuleTest(unittest.TestCase):
 
     def test_delete_all_contacts_named_A(self):
         phoneBook = PhoneBook()
+        phoneBook.initialize()
 
         phoneBook.save_contact(Contact("A", "1234567890"))
         phoneBook.save_contact(Contact("A", "0987654321"))
 
         self.assertEqual(2, len(phoneBook.get_contacts()))
+        phoneBook.delete_all_contacts_by_name("A")
+        self.assertEqual(0, len(phoneBook.get_contacts()))
 
     def test_delete_second_contact_named_A(self):
         phoneBook = PhoneBook()
@@ -87,7 +93,7 @@ class PhoneBookModuleTest(unittest.TestCase):
 
         self.assertEqual(2, len(phoneBook.get_contacts()))
 
-        contact = phoneBook.get_contacts_by_name_and_order("A", 1)[1]
+        contact = phoneBook.get_contacts_by_name_and_order("A", 1)[0]
 
         phoneBook.delete_contact(contact, 1)
         self.assertEqual(len(phoneBook.get_contacts()), 1)
@@ -107,6 +113,7 @@ class PhoneBookModuleTest(unittest.TestCase):
 
     def test_matchingExisting_negative(self):
         phoneBook = PhoneBook()
+        phoneBook.initialize()
 
         phoneBook.save_contact(Contact("A", "1234567890"))
         self.assertEqual(len(phoneBook.get_contacts()), 1)

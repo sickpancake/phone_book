@@ -4,10 +4,14 @@
 
 class Contact:
     '''an object that contains a name and phonenumber'''
-    def __init__(self, name: str, phonenumber: str):
+    def __init__(self, contact_id: int, name: str, phonenumber: str):
         self.name = name
         self.phonenumber = phonenumber
+        self.contact_id = contact_id
 
+    def get_contact_id(self) -> int:
+        return self.contact_id
+    
     def set_phone_number(self, phonenumber: str) -> None:
         """set an phonenumber"""
         self.phonenumber = phonenumber
@@ -23,3 +27,5 @@ class Contact:
     def get_name(self) -> str:
         """get the name"""
         return self.name
+
+
