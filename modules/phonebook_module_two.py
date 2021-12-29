@@ -98,7 +98,7 @@ class PhoneBook:
         contacts = []
         contacts.append(contacts_by_name_at_order)
         return contacts
-
+    
     def get_contacts_by_id(self, id: int) -> Contact:
         row = self.cursor.execute(
             '''
@@ -117,6 +117,14 @@ class PhoneBook:
         
         return contact
 
+    def create_id(self) -> int:
+        if not len(self.get_contacts()) == 0:
+            new_id = len(self.get_contacts()) + 1
+
+        else:
+            new_id = 1
+
+        return new_id
 
     def matching_existing(self, contact: Contact) -> None:
         # get the contact's name and phonenumber
@@ -184,11 +192,11 @@ class PhoneBook:
         self.connection.commit()
         print("added")
 
-    def delete_contact(self, contact: Contact, id):
+    def delete_contact(self, contact: Contact, contact_id):
         if contact == None:
             return
 
-        if len(self.get_contacts()) < id:
+        if len(self.get_contacts()) < contact_id:
             return
 
         self.cursor.execute(
@@ -196,7 +204,7 @@ class PhoneBook:
             delete from phonebook where id = :id
             ''',
             {
-                'id': id
+                'id': contact_id
             }
         )
 
