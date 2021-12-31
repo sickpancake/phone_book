@@ -109,6 +109,7 @@ class PhoneBook:
             }
         )
 
+        row = row.fetchall()
         row = row[0]
         contact_id = row[0]
         contact_name = row[1]

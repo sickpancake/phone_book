@@ -6,8 +6,10 @@ from modules.ContactModule import Contact
 
 class PhoneBookModuleTest(unittest.TestCase):
     def setUp(self):
-        #todo: delete the old database
-        pass
+        phoneBook = PhoneBook()
+        phoneBook.cursor.execute(
+            'drop table phonebook'
+        )
 
     def test_default_phonebook_should_be_empty(self):
         phoneBook = PhoneBook()
@@ -44,7 +46,7 @@ class PhoneBookModuleTest(unittest.TestCase):
 
         self.assertEqual(2, len(phoneBook.get_contacts()))
 
-    def test_order_should_be_numbers(self):
+    def test_id_should_be_numbers(self):
         phoneBook = PhoneBook()
         phoneBook.initialize()
 
@@ -59,7 +61,7 @@ class PhoneBookModuleTest(unittest.TestCase):
         with self.assertRaises(TypeError):
             phoneBook.delete_contact(
                 phoneBook.get_contacts_by_id(1),
-                1
+                "1"
             )
 
     def test_delete_all_contacts_named_A(self):
@@ -85,7 +87,9 @@ class PhoneBookModuleTest(unittest.TestCase):
         contact = phoneBook.get_contacts_by_id(2)
 
         phoneBook.delete_contact(contact, 2)
-        self.assertEqual(phoneBook.get_contacts_by_id(2), None)
+        self.assertEqual(len(phoneBook.get_contacts()), 1)
+        with self.assertRaises(IndexError):
+            phoneBook.get_contacts_by_id(2)
 
     def test_delete_first_contact_named_A(self):
         phoneBook = PhoneBook()
@@ -96,11 +100,12 @@ class PhoneBookModuleTest(unittest.TestCase):
 
         self.assertEqual(2, len(phoneBook.get_contacts()))
 
-        contact = phoneBook.get_contacts_by_name_and_order("A", 1)[0]
+        contact = phoneBook.get_contacts_by_id(1)
 
         phoneBook.delete_contact(contact, 1)
         self.assertEqual(len(phoneBook.get_contacts()), 1)
-        self.assertEqual(contact.get_contact_id(), 2)
+        with self.assertRaises(IndexError):
+            phoneBook.get_contacts_by_id(1)
 
     def test_no_duplicate_contact(self):
         phoneBook = PhoneBook()
