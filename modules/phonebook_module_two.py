@@ -28,12 +28,13 @@ class PhoneBook:
         self.connection.close()
 
     def initialize(self):
+        '''initilize the database'''
         self.cursor.execute(
             '''
             create table if not exists phonebook
             (
                 id integer primary key,
-                name text, 
+                name text,
                 phonenumber text
             )
             '''
@@ -66,6 +67,7 @@ class PhoneBook:
         return contact_list
 
     def get_contacts_by_name(self, name: str) -> list[Contact]:
+        '''get the contacts who has a certain name'''
 
         # create an empty contact list first
         contact_list = list[Contact]()
@@ -93,19 +95,21 @@ class PhoneBook:
         return contact_list
 
     def get_contacts_by_name_and_order(self, name: str, order: int) -> list[Contact]:
+        '''get a contact by a name and a order'''
         contacts_by_name = self.get_contacts_by_name(name)
         contacts_by_name_at_order = contacts_by_name[order - 1]
         contacts = []
         contacts.append(contacts_by_name_at_order)
         return contacts
-    
-    def get_contacts_by_id(self, id: int) -> Contact:
+
+    def get_contacts_by_id(self, contact_id: int) -> Contact:
+        '''get a contact whose id is the one inputed'''
         row = self.cursor.execute(
             '''
             select * from phonebook where id = :id
             ''',
             {
-                'id': id
+                'id': contact_id
             }
         )
 
@@ -116,10 +120,11 @@ class PhoneBook:
         contact_phonenumber = row[2]
 
         contact = Contact(contact_id, contact_name, contact_phonenumber)
-        
+
         return contact
 
     def create_id(self) -> int:
+        '''create the next possible id'''
         if not len(self.get_contacts()) == 0:
             new_id = len(self.get_contacts()) + 1
 
@@ -129,11 +134,12 @@ class PhoneBook:
         return new_id
 
     def matching_existing(self, contact: Contact) -> None:
+        '''check if there is aready a contact with the same properties'''
         # get the contact's name and phonenumber
         contact_phonenumber = contact.get_phone_number()
         contact_name = contact.get_name()
-        
-        # loop through all the rows 
+
+        # loop through all the rows
         for each_row in self.cursor.execute(
             '''
             select * from phonebook
@@ -146,12 +152,12 @@ class PhoneBook:
             same_name = each_row[1] == contact_name
 
             # if both true return true
-            if same_phonenumber == True and same_name == True:
+            if same_phonenumber is True and same_name is True:
                 return True
 
         # after looking through all the contacts and still none, return flase
         return False
-    
+
     def validate_phone_number(self, phonenumber: str) -> bool:
         """check if the number has the right conditions"""
 
@@ -170,9 +176,10 @@ class PhoneBook:
         return True
 
     def save_contact(self, contact: Contact) -> None:
+        '''save a contact to the database'''
 
         # reutrn if there's already a contact with the same properties
-        if self.matching_existing(contact) == True:
+        if self.matching_existing(contact) is True:
             return
 
         # validate phonenumber
@@ -190,12 +197,13 @@ class PhoneBook:
                 "phonenumber": contact.get_phone_number()
             }
         )
-        
+
         self.connection.commit()
         print("added")
 
     def delete_contact(self, contact: Contact, contact_id):
-        if contact == None:
+        '''delete a contact from the database'''
+        if contact is None:
             return
 
         if len(self.get_contacts()) < contact_id:
@@ -213,6 +221,7 @@ class PhoneBook:
         self.connection.commit()
 
     def delete_all_contacts_by_name(self, name: str) -> None:
+        '''delete all contacts named whose name is the one that was inputed'''
         self.cursor.execute(
             '''
             delete from phonebook where name = :name
