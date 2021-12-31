@@ -7,7 +7,7 @@ from modules.phonebook_module_two import PhoneBook
 def print_list(list_of_objects: list[Contact]) -> None:
     """print a list"""
     for contact in list_of_objects:
-        print(str(contact.contact_id) + ": " 
+        print(str(contact.contact_id) + ": "
         + contact.name + ": "
         + contact.phonenumber)
 
@@ -29,7 +29,7 @@ if __name__ == "__main__":
         if cmd == "create":
             p = input("person's name? ")
             pn = input("phone number? ")
-            
+
             contact = Contact(phone_book.create_id(), p, pn)
 
             phone_book.save_contact(contact)
@@ -37,14 +37,14 @@ if __name__ == "__main__":
             print_list(phone_book.get_contacts())
 
         if cmd == "delete":
-            id = input("id? ")
-            contact = phone_book.get_contacts_by_id(int(id))
+            contact_id = input("id? ")
+            contact = phone_book.get_contacts_by_id(int(contact_id))
 
             if contact is None:
                 print("contact does not exist")
                 break
 
-            phone_book.delete_contact(contact, id)
+            phone_book.delete_contact(contact, contact_id)
 
             list_phonenumbers = phone_book.get_contacts()
 

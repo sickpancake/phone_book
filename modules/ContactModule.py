@@ -10,8 +10,9 @@ class Contact:
         self.contact_id = contact_id
 
     def get_contact_id(self) -> int:
+        '''get the contact's id'''
         return self.contact_id
-    
+
     def set_phone_number(self, phonenumber: str) -> None:
         """set an phonenumber"""
         self.phonenumber = phonenumber
@@ -27,5 +28,3 @@ class Contact:
     def get_name(self) -> str:
         """get the name"""
         return self.name
-
-
