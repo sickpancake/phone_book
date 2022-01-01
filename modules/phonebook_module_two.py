@@ -203,6 +203,7 @@ class PhoneBook:
 
     def delete_contact(self, contact: Contact, contact_id):
         '''delete a contact from the database'''
+        contact_id = int(contact_id)
         if contact is None:
             return
 
