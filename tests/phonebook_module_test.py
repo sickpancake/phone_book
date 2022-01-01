@@ -1,3 +1,7 @@
+'''
+this test suite targets logics in phonebook module
+'''
+
 import unittest
 
 from modules.phonebook_module_two import PhoneBook
@@ -5,6 +9,9 @@ from modules.ContactModule import Contact
 
 
 class PhoneBookModuleTest(unittest.TestCase):
+    '''
+    test suite
+    '''
     def setUp(self):
         phoneBook = PhoneBook()
         phoneBook.cursor.execute(
@@ -45,26 +52,6 @@ class PhoneBookModuleTest(unittest.TestCase):
         phoneBook.save_contact(contact2)
 
         self.assertEqual(2, len(phoneBook.get_contacts()))
-
-    def test_id_should_be_numbers(self):
-        phoneBook = PhoneBook()
-        phoneBook.initialize()
-
-        contact = Contact(phoneBook.create_id, "A", "1234567890")
-        self.assertEqual(contact.name, "A", "contact name is not A")
-        self.assertEqual(contact.phonenumber, "1234567890",
-                         "contact phone number is not 1234567890")
-        phoneBook.save_contact(contact)
-        self.assertEqual(len(phoneBook.get_contacts()), 1,
-                         "there should be 1 contact in phone book")
-
-        raised = False
-        try:
-            phoneBook.delete_contact(phoneBook.get_contacts_by_id(1), "1")
-        except TypeError():
-            raised = True
-
-        self.assertEqual(raised, False)
 
     def test_delete_all_contacts_named_A(self):
         phoneBook = PhoneBook()

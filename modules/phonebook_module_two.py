@@ -201,9 +201,8 @@ class PhoneBook:
         self.connection.commit()
         print("added")
 
-    def delete_contact(self, contact: Contact, contact_id):
+    def delete_contact(self, contact: Contact, contact_id: int):
         '''delete a contact from the database'''
-        contact_id = int(contact_id)
         if contact is None:
             return
 
