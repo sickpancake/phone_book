@@ -20,11 +20,11 @@ class PhoneBookModuleTest(unittest.TestCase):
 
     def test_default_phonebook_should_be_empty(self):
         '''check if a new phonebook is empty'''
-        phoneBook = PhoneBook()
-        phoneBook.initialize()
+        phonebook = PhoneBook()
+        phonebook.initialize()
 
         expected = 0
-        actual = len(phoneBook.get_contacts())
+        actual = len(phonebook.get_contacts())
 
         self.assertEqual(expected, actual)
 
