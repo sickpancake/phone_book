@@ -29,6 +29,7 @@ class PhoneBookModuleTest(unittest.TestCase):
         self.assertEqual(expected, actual)
 
     def test_add_contact(self):
+        '''test if you can add a contact'''
         phoneBook = PhoneBook()
         phoneBook.initialize()
         
