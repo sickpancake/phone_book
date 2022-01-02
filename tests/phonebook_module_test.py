@@ -30,13 +30,13 @@ class PhoneBookModuleTest(unittest.TestCase):
 
     def test_add_contact(self):
         '''test if you can add a contact'''
-        phoneBook = PhoneBook()
-        phoneBook.initialize()
-        
-        expectedContact = Contact(phoneBook.create_id(),"A", "0123456789")
-        phoneBook.save_contact(expectedContact)
+        phonebook = PhoneBook()
+        phonebook.initialize()
 
-        actualContact = phoneBook.get_contacts_by_name("A")[0]
+        expectedContact = Contact(phonebook.create_id(),"A", "0123456789")
+        phonebook.save_contact(expectedContact)
+
+        actualContact = phonebook.get_contacts_by_name("A")[0]
 
 
         self.assertEqual(expectedContact.name, actualContact.name)
