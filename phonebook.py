@@ -1,6 +1,6 @@
 '''main program'''
 # import the classes
-from modules.ContactModule import Contact
+from modules.contact_module import Contact
 from modules.phonebook_module import PhoneBook
 
 

@@ -5,7 +5,7 @@ import os
 import pathlib
 import sqlite3
 
-from modules.ContactModule import Contact
+from modules.contact_module import Contact
 
 
 class PhoneBook:
