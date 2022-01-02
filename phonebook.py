@@ -1,7 +1,7 @@
 '''main program'''
 # import the classes
 from modules.ContactModule import Contact
-from modules.phonebook_module_two import PhoneBook
+from modules.phonebook_module import PhoneBook
 
 
 def print_list(list_of_objects: list[Contact]) -> None:

@@ -4,7 +4,7 @@ this test suite targets logics in main (i.e. phonebook.py)
 import unittest
 
 from phonebook import create_from_input, delete_from_input
-from modules.phonebook_module_two import PhoneBook
+from modules.phonebook_module import PhoneBook
 
 
 class PhoneBookTest(unittest.TestCase):

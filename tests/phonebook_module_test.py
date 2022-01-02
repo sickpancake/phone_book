@@ -4,7 +4,7 @@ this test suite targets logics in phonebook module
 
 import unittest
 
-from modules.phonebook_module_two import PhoneBook
+from modules.phonebook_module import PhoneBook
 from modules.ContactModule import Contact
 
 
