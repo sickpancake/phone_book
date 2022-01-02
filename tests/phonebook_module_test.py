@@ -13,12 +13,13 @@ class PhoneBookModuleTest(unittest.TestCase):
     test suite
     '''
     def setUp(self):
-        phoneBook = PhoneBook()
-        phoneBook.cursor.execute(
+        phonebook = PhoneBook()
+        phonebook.cursor.execute(
             'drop table phonebook'
         )
 
     def test_default_phonebook_should_be_empty(self):
+        '''check if a new phonebook is empty'''
         phoneBook = PhoneBook()
         phoneBook.initialize()
 
