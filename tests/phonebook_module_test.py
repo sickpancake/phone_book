@@ -33,14 +33,14 @@ class PhoneBookModuleTest(unittest.TestCase):
         phonebook = PhoneBook()
         phonebook.initialize()
 
-        expectedContact = Contact(phonebook.create_id(),"A", "0123456789")
-        phonebook.save_contact(expectedContact)
+        expected_contact = Contact(phonebook.create_id(),"A", "0123456789")
+        phonebook.save_contact(expected_contact)
 
         actualContact = phonebook.get_contacts_by_name("A")[0]
 
 
-        self.assertEqual(expectedContact.name, actualContact.name)
-        self.assertEqual(expectedContact.phonenumber,
+        self.assertEqual(expected_contact.name, actualContact.name)
+        self.assertEqual(expected_contact.phonenumber,
                          actualContact.phonenumber)
 
     def test_allow_duplicate(self):
