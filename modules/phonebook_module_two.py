@@ -104,7 +104,7 @@ class PhoneBook:
 
     def get_contacts_by_id(self, contact_id: int) -> Contact:
         '''get a contact whose id is the one inputed'''
-        row = self.cursor.execute(
+        cursor = self.cursor.execute(
             '''
             select * from phonebook where id = :id
             ''',
@@ -113,8 +113,12 @@ class PhoneBook:
             }
         )
 
-        row = row.fetchall()
-        row = row[0]
+        row_list = cursor.fetchall()
+
+        if len(row_list) == 0:
+            return None
+
+        row = row_list[0]
         contact_id = row[0]
         contact_name = row[1]
         contact_phonenumber = row[2]
